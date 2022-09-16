@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="display:flex; justify-content:center"> Seach Bar </h1>
+    <div style="color:rgb(9, 6, 6); font-size: larger; display: flex; border: 5px ; justify-content: center; padding:10px; margin-bottom: 15px;">
+        
+        <label for="">Enter Row:</label><input type="text" id="row"> 
+        <label for="">Enter Column:</label><input type="text" id="col">
+
+        <div><button style="margin-left: 10px; background-color: rgb(255, 255, 255); border-radius: 10px;" onclick="getInputValue()"> Enter to get the Data </button></div>
+        </div>
+        <h3> Total number of elements in the coloumn: {{ datac | safe}}</h3>
+        <h3> max of the value: {{ datamax | safe}}</h3>
+        <h3> min of the value: {{ datamin | safe}}</h3>
+        <h3> sum of the value: {{ data_sum | safe}}</h3>
+        <h2>{{ data | safe}}</h2>
+
+
+
+
+   <script>
+    function getInputValue(){
+            // Selecting the input element and get its value 
+            var name = document.getElementById("name").value;
+            var info = document.getElementById("info").value;
+
+            const dict = {name, info}
+            const s = JSON.stringify(dict)
+            $.ajax({
+            url:"/app.py",
+            type:"POST",
+            contentType: "application/json",
+            data: JSON.stringify(s)});
+        }
+
+            
+   </script>
+</body>
+</html>
